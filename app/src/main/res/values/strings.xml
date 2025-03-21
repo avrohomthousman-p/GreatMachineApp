@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Move Planner</string>
+    <string name="fab_text">Get Started</string>
 </resources>
