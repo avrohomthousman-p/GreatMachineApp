@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_reset"
+        android:icon="@drawable/ic_reset"
+        android:title="@string/reset_icon_text"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_done"
+        android:icon="@drawable/ic_done"
+        android:title="@string/done_icon_text"
+        android:orderInCategory="200"
+        app:showAsAction="ifRoom" />
+</menu>
