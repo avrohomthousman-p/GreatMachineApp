@@ -1,5 +1,6 @@
 package com.greatmachine.moveplanner;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -100,8 +101,10 @@ public class DeckContentsActivity extends AppCompatActivity {
             return true;
         }
         else if (id == R.id.action_done){
-            //TODO move to next activity
-            return false;
+            //TODO replace this with perminent code
+            Intent intent = new Intent(this, DataEntryActivity.class);
+            startActivity(intent);
+            return true;
         }
         else{
             return super.onOptionsItemSelected(item);

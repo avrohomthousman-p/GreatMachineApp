@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MovePlanner"
         tools:targetApi="31">
         <activity
+            android:name=".DataEntryActivity"
+            android:exported="false" />
+        <activity
             android:name=".DeckContentsActivity"
             android:exported="false" />
         <activity

@@ -26,4 +26,10 @@
     <string name="goggles_card_description">goggles card</string>
     <string name="rose_card_description">rose card</string>
     <string name="maintenance_card_description">maintenance card</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">
+        This is the overview fragment. Here I plan to put the total cards still in the deck.
+    </string>
 </resources>
