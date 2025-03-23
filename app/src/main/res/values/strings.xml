@@ -18,4 +18,6 @@
         This is the overview fragment. Here I plan to put the total cards still in the deck.
     </string>
     <string name="data_entry_instructions">For each servant, enter the number of detainment\'s that this card will trigger if it is drawn by that servant.</string>
+    <string name="placeholder_card_number">Card ?/13</string>
+    <string name="default_detainments">0</string>
 </resources>

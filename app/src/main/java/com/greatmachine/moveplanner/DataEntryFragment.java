@@ -1,12 +1,17 @@
 package com.greatmachine.moveplanner;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.Locale;
 
 /**
  * A {@link Fragment} subclass that lets the user enter data about
@@ -17,50 +22,70 @@ import android.view.ViewGroup;
  */
 public class DataEntryFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    // Keys used for arguments passed to fragments
+    private static final String FRAGMENT_NUMBER = "fragmentNumber";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
+    private int fragmentNumber;
+    private ConstraintLayout layout;
+
 
     public DataEntryFragment() {
         // Required empty public constructor
     }
 
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param fragmentNumber
      * @return A new instance of fragment DataEntryFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static DataEntryFragment newInstance(String param1, String param2) {
+    public static DataEntryFragment newInstance(int fragmentNumber) {
         DataEntryFragment fragment = new DataEntryFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putInt(FRAGMENT_NUMBER, fragmentNumber);
         fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            this.fragmentNumber = getArguments().getInt(FRAGMENT_NUMBER);
         }
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_data_entry, container, false);
+        this.layout = (ConstraintLayout) inflater.inflate(R.layout.fragment_data_entry, container, false);
+
+        //Replace the placeholder data in the layout
+        setCardNumberAndImage();
+
+        return this.layout;
+    }
+
+
+    /**
+     * The layout has default values for the card number and card image.
+     * These defaults need to be replaced at runtime with the actual data.
+     */
+    private void setCardNumberAndImage(){
+        if (this.fragmentNumber <= 0 || this.fragmentNumber > 13){
+            throw new IllegalStateException("There are only 13 card options. Got " + this.fragmentNumber);
+        }
+
+        TextView cardNumberDisplay = layout.findViewById(R.id.card_number);
+        String text = String.format(Locale.US, "Card %d/13", this.fragmentNumber);
+        cardNumberDisplay.setText(text);
+
+        //TODO: set the correct card image
     }
 }

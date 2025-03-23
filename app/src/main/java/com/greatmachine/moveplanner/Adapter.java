@@ -7,7 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 
 public class Adapter extends FragmentStateAdapter {
-    public static final int PAGE_COUNT = 13;
+    public static final int PAGE_COUNT = 14;
 
     public Adapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
@@ -16,8 +16,12 @@ public class Adapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        //TODO: return diff fragments depending on the position
-        return OverviewFragment.newInstance("only fragment", "lets see what happens");
+        switch (position){
+            case 0:
+                return OverviewFragment.newInstance("only fragment", "lets see what happens");
+            default:
+                return DataEntryFragment.newInstance(position);
+        }
     }
 
     @Override

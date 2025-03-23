@@ -10,7 +10,7 @@
         android:id="@+id/card_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Card ?/13"
+        android:text="@string/placeholder_card_number"
         android:textSize="@dimen/large_text"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,10 +20,10 @@
         android:id="@+id/card_image"
         android:layout_width="@dimen/card_width"
         android:layout_height="@dimen/card_height"
-        app:layout_constraintTop_toBottomOf="@+id/card_number"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:srcCompat="@drawable/movement_card" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_number"
+        app:srcCompat="@drawable/movement_card" />
 
 
     <ImageView
@@ -42,24 +42,87 @@
         android:id="@+id/barrier"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginVertical="16dp"
+        android:layout_marginTop="20dp"
         android:background="#000000"
-        app:layout_constraintTop_toBottomOf="@+id/card_image"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/card_image" />
 
     <TextView
+        android:id="@+id/instructions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/light_grey"
         android:text="@string/data_entry_instructions"
-        android:textSize="@dimen/medium_text"
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/barrier"
+        android:textSize="@dimen/medium_text"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/barrier" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/servant_1_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:layout_marginHorizontal="32dp"
+        android:hint="Enter the number of detainment's for servant 1"
+        app:layout_constraintTop_toBottomOf="@+id/instructions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/servant_1_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:minEms="3"
+        android:inputType="number"
+         />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-    <!-- TODO: put in a numeric input field for each servent -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/servant_2_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:layout_marginHorizontal="32dp"
+        android:hint="Enter the number of detainment's for servant 2"
+        app:layout_constraintTop_toBottomOf="@+id/servant_1_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/servant_2_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:inputType="number"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/servant_3_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:layout_marginHorizontal="32dp"
+        android:hint="Enter the number of detainment's for servant 3"
+        app:layout_constraintTop_toBottomOf="@+id/servant_2_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/servant_3_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:inputType="number"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
