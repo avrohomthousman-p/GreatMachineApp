@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, DeckContentsActivity.class);
+                Intent intent = new Intent(MainActivity.this, DataEntryActivity.class);
                 startActivity(intent);
             }
         });

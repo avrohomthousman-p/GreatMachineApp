@@ -10,26 +10,12 @@
     </string>
 
 
-    <string name="reset_icon_text">Reset</string>
-    <string name="done_icon_text">Done</string>
-    <string name="card_count_text">There are 13 cards in the deck</string>
     <string name="delete_btn_description">delete button</string>
-
-    <string name="stay_and_make_guard_card_description">stay still and make guard card</string>
-    <string name="stay_still_card_description">stay still card</string>
-    <string name="move_down_card_description">move down card</string>
-    <string name="move_left_card_description">move left card</string>
-    <string name="move_up_card_description">move up card</string>
-    <string name="move_right_card_description">move right card</string>
-    <string name="central_square_card_description">central square card</string>
-    <string name="bird_card_description">bird card</string>
-    <string name="goggles_card_description">goggles card</string>
-    <string name="rose_card_description">rose card</string>
-    <string name="maintenance_card_description">maintenance card</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">
         This is the overview fragment. Here I plan to put the total cards still in the deck.
     </string>
+    <string name="data_entry_instructions">For each servant, enter the number of detainment\'s that this card will trigger if it is drawn by that servant.</string>
 </resources>
