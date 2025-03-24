@@ -1,6 +1,5 @@
-package com.greatmachine.moveplanner;
+package com.greatmachine.moveplanner.activities;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -10,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.greatmachine.moveplanner.R;
 
 import java.util.Locale;
 

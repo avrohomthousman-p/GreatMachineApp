@@ -1,4 +1,4 @@
-package com.greatmachine.moveplanner;
+package com.greatmachine.moveplanner.activities;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.greatmachine.moveplanner.R;
 
 /**
  * A simple {@link Fragment} subclass used to display a summary of
