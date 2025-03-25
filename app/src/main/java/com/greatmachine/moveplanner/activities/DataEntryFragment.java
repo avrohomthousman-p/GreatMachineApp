@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.greatmachine.moveplanner.R;
+import com.greatmachine.moveplanner.utils.Constants;
+import com.greatmachine.moveplanner.utils.Utilities;
 
 import java.util.Locale;
 
@@ -79,12 +81,13 @@ public class DataEntryFragment extends Fragment {
      * These defaults need to be replaced at runtime with the actual data.
      */
     private void setCardNumberAndImage(){
-        if (this.fragmentNumber <= 0 || this.fragmentNumber > 13){
-            throw new IllegalStateException("There are only 13 card options. Got " + this.fragmentNumber);
-        }
-
         TextView cardNumberDisplay = layout.findViewById(R.id.card_number);
-        String text = String.format(Locale.US, "Card %d/13", this.fragmentNumber);
+        String text = String.format(
+                Locale.US,
+                "Card %d/%d",
+                Utilities.cardNumberFromFragmentNumber(this.fragmentNumber),
+                Constants.NUMBER_OF_FRAGMENTS - 1);
+
         cardNumberDisplay.setText(text);
 
         //TODO: set the correct card image

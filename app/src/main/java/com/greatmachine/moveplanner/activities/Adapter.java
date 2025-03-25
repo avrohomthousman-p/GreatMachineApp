@@ -5,10 +5,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.greatmachine.moveplanner.utils.Constants;
+
 
 public class Adapter extends FragmentStateAdapter {
-    public static final int PAGE_COUNT = 14;
-
     public Adapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
@@ -17,7 +17,7 @@ public class Adapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position){
-            case 0:
+            case Constants.OVERVIEW_FRAGMENT_NUMBER:
                 return OverviewFragment.newInstance("only fragment", "lets see what happens");
             default:
                 return DataEntryFragment.newInstance(position);
@@ -26,6 +26,6 @@ public class Adapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return PAGE_COUNT;
+        return Constants.NUMBER_OF_FRAGMENTS;
     }
 }
