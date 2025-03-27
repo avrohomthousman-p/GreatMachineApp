@@ -1,13 +1,16 @@
 package com.greatmachine.moveplanner.activities;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.greatmachine.moveplanner.R;
@@ -69,17 +72,18 @@ public class DataEntryFragment extends Fragment {
         this.layout = (ConstraintLayout) inflater.inflate(R.layout.fragment_data_entry, container, false);
 
         //Replace the placeholder data in the layout
-        setCardNumberAndImage();
+        setCardNumber();
+        setCardImage();
 
         return this.layout;
     }
 
 
     /**
-     * The layout has default values for the card number and card image.
-     * These defaults need to be replaced at runtime with the actual data.
+     * The layout has default values for the card number. These defaults
+     * need to be replaced at runtime with the actual data.
      */
-    private void setCardNumberAndImage(){
+    private void setCardNumber(){
         TextView cardNumberDisplay = layout.findViewById(R.id.card_number);
         String text = String.format(
                 Locale.US,
@@ -88,7 +92,18 @@ public class DataEntryFragment extends Fragment {
                 Constants.NUMBER_OF_FRAGMENTS - 1);
 
         cardNumberDisplay.setText(text);
+    }
 
-        //TODO: set the correct card image
+
+    /**
+     * The layout has a default image in each data fragment. It needs
+     * to be replaced with an actual card image on creation.
+     */
+    private void setCardImage(){
+        int cardID = Constants.FRAGMENT_DATA[this.fragmentNumber].cardImageResource;
+        Drawable cardPic = ContextCompat.getDrawable(getActivity(), cardID);
+
+        ImageView cardDisplay = layout.findViewById(R.id.card_image);
+        cardDisplay.setImageDrawable(cardPic);
     }
 }
