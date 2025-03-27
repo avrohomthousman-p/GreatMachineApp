@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.greatmachine.moveplanner.R;
 import com.greatmachine.moveplanner.utils.Constants;
-import com.greatmachine.moveplanner.utils.Utilities;
 
 import java.util.Locale;
 
@@ -85,7 +84,7 @@ public class DataEntryFragment extends Fragment {
         String text = String.format(
                 Locale.US,
                 "Card %d/%d",
-                Utilities.cardNumberFromFragmentNumber(this.fragmentNumber),
+                Constants.FRAGMENT_DATA[this.fragmentNumber].cardNumber,
                 Constants.NUMBER_OF_FRAGMENTS - 1);
 
         cardNumberDisplay.setText(text);

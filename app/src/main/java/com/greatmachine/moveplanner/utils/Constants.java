@@ -1,95 +1,28 @@
 package com.greatmachine.moveplanner.utils;
 
-import java.util.Locale;
+import com.greatmachine.moveplanner.R;
 
 public class Constants {
     public static final int NUMBER_OF_FRAGMENTS = 14;
     public static final int OVERVIEW_FRAGMENT_NUMBER = 6;
+    public static final FragmentData[] FRAGMENT_DATA;
 
 
-    public static int getFragmentNumberByCardType(CardType cardType){
-        switch(cardType){
-            case STAY_AND_MAKE_GUARD:
-                return 0;
-            case STAY_STILL:
-                return 1;
-            case MOVE_DOWN:
-                return 2;
-            case MOVE_LEFT:
-                return 3;
-            case MOVE_UP:
-                return 4;
-            case MOVE_RIGHT:
-                return 5;
-
-            // fragment 6 is the overview fragment
-
-            case CENTRAL_SQUARE:
-                return 7;
-            case BIRD:
-                return 8;
-            case GOGGLES:
-                return 9;
-            case ROSE:
-                return 10;
-            case MAINTENANCE_1:
-                return 11;
-            case MAINTENANCE_2:
-                return 12;
-            case MAINTENANCE_3:
-                return 13;
-            default:
-                throw new IllegalArgumentException(String.format(Locale.US, "%s is not a valid card type.", cardType));
-        }
-    }
-
-
-    public static int getImageResourceByFragment(int fragmentNumber){
-        switch (fragmentNumber){
-            //TODO: actually implement this when I know what data to return
-            default:
-                return -1;
-        }
-    }
-
-
-    public static CardType getCardTypeByFragment(int fragmentNumber){
-        switch (fragmentNumber){
-            case 0:
-                return CardType.STAY_AND_MAKE_GUARD;
-            case 1:
-                return CardType.STAY_STILL;
-            case 2:
-                return CardType.MOVE_DOWN;
-            case 3:
-                return CardType.MOVE_LEFT;
-            case 4:
-                return CardType.MOVE_UP;
-            case 5:
-                return CardType.MOVE_RIGHT;
-            case OVERVIEW_FRAGMENT_NUMBER:
-                return null;
-            case 7:
-                return CardType.CENTRAL_SQUARE;
-            case 8:
-                return CardType.BIRD;
-            case 9:
-                return CardType.GOGGLES;
-            case 10:
-                return CardType.ROSE;
-            case 11:
-                return CardType.MAINTENANCE_1;
-            case 12:
-                return CardType.MAINTENANCE_2;
-            case 13:
-                return CardType.MAINTENANCE_3;
-            default:
-                throw new IllegalArgumentException(String.format(
-                        Locale.US,
-                        "Fragments are numbered 0 to %d. There is no fragment %d",
-                        NUMBER_OF_FRAGMENTS,
-                        fragmentNumber
-                ));
-        }
+    static {
+        FRAGMENT_DATA = new FragmentData[14];
+        FRAGMENT_DATA[0] = new FragmentData(CardType.STAY_AND_MAKE_GUARD, 0, 1, R.drawable.stay_and_make_guard);;
+        FRAGMENT_DATA[1] = new FragmentData(CardType.STAY_STILL, 1, 2, R.drawable.stay_still);
+        FRAGMENT_DATA[2] = new FragmentData(CardType.MOVE_DOWN, 2, 3, R.drawable.move_down);
+        FRAGMENT_DATA[3] = new FragmentData(CardType.MOVE_LEFT, 3, 4, R.drawable.move_left);
+        FRAGMENT_DATA[4] = new FragmentData(CardType.MOVE_UP, 4, 5, R.drawable.move_up);
+        FRAGMENT_DATA[5] = new FragmentData(CardType.MOVE_RIGHT, 5, 6, R.drawable.move_right);
+        FRAGMENT_DATA[6] = new FragmentData(null, 6, 0, 0);
+        FRAGMENT_DATA[7] = new FragmentData(CardType.CENTRAL_SQUARE, 7, 7, R.drawable.central_square);
+        FRAGMENT_DATA[8] = new FragmentData(CardType.BIRD, 8, 8, R.drawable.bird);
+        FRAGMENT_DATA[9] = new FragmentData(CardType.GOGGLES, 9, 9, R.drawable.goggles);
+        FRAGMENT_DATA[10] = new FragmentData(CardType.ROSE, 10, 10, R.drawable.rose);
+        FRAGMENT_DATA[11] = new FragmentData(CardType.MAINTENANCE_1, 11, 11, R.drawable.maintenance);
+        FRAGMENT_DATA[12] = new FragmentData(CardType.MAINTENANCE_2, 12, 12, R.drawable.maintenance);
+        FRAGMENT_DATA[13] = new FragmentData(CardType.MAINTENANCE_3, 13, 13, R.drawable.maintenance);
     }
 }
