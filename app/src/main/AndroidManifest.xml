@@ -16,9 +16,6 @@
             android:name=".activities.DataEntryActivity"
             android:exported="false" />
         <activity
-            android:name=".DeckContentsActivity"
-            android:exported="false" />
-        <activity
             android:name=".activities.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.MovePlanner">
