@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.greatmachine.moveplanner.R;
 import com.greatmachine.moveplanner.utils.Constants;
 
@@ -75,6 +76,9 @@ public class DataEntryFragment extends Fragment {
         setCardNumber();
         setCardImage();
 
+        //Add zeros to each input field
+        setDefaultDetainments();
+
         return this.layout;
     }
 
@@ -105,5 +109,22 @@ public class DataEntryFragment extends Fragment {
 
         ImageView cardDisplay = layout.findViewById(R.id.card_image);
         cardDisplay.setImageDrawable(cardPic);
+    }
+
+
+    /**
+     * Each data input for number of detainment's should have a default/starting
+     * value of zero. Until android provides support for such a thing in xml,
+     * it must be done here.
+     */
+    private void setDefaultDetainments(){
+        TextInputEditText inputField = layout.findViewById(R.id.servant_1_input);
+        inputField.setText("0");
+
+        inputField = layout.findViewById(R.id.servant_2_input);
+        inputField.setText("0");
+
+        inputField = layout.findViewById(R.id.servant_3_input);
+        inputField.setText("0");
     }
 }

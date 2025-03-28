@@ -20,4 +20,8 @@
     <string name="data_entry_instructions">For each servant, enter the number of detainment\'s that this card will trigger if it is drawn by that servant.</string>
     <string name="placeholder_card_number">Card ?/13</string>
     <string name="default_detainments">0</string>
+    <string name="servant_1_hint">Number of detainment\'s for servant 1</string>
+    <string name="servant_2_hint">Number of detainment\'s for servant 2</string>
+    <string name="servant_3_hint">Number of detainment\'s for servant 3</string>
+
 </resources>
