@@ -20,10 +20,8 @@ public class Adapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case Constants.OVERVIEW_FRAGMENT_NUMBER:
-                Log.println(Log.ERROR, "debugging", "loading overview fragment");
                 return OverviewFragment.newInstance("only fragment", "lets see what happens");
             default:
-                Log.println(Log.ERROR,"debugging", "loading fragment " + position);
                 return DataEntryFragment.newInstance(position);
         }
     }
