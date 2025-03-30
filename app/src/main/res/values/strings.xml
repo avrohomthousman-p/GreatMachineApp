@@ -26,4 +26,10 @@
     <string name="goggles_card_description">goggles card</string>
     <string name="rose_card_description">rose card</string>
     <string name="maintenance_card_description">maintenance card</string>
+
+
+    <string name="hello_blank_fragment">This is the overview fragment. real data will be added soon</string>
+    <string name="data_entry_instructions">For each servant, enter the number of detainment\'s that this card will trigger if it is drawn by that servant.</string>
+    <string name="placeholder_card_number">Card ?/13</string>
+    <string name="default_detainments">0</string>
 </resources>

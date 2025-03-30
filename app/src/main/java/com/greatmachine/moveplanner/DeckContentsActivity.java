@@ -1,5 +1,6 @@
 package com.greatmachine.moveplanner;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -104,8 +105,10 @@ public class DeckContentsActivity extends AppCompatActivity {
             return true;
         }
         else if (id == R.id.action_done){
-            //TODO move to next activity
-            return false;
+            //TODO: pass in a list of cards that are in the deck
+            Intent intent = new Intent(this, DetainmentCountActivity.class);
+            startActivity(intent);
+            return true;
         }
         else{
             return super.onOptionsItemSelected(item);
