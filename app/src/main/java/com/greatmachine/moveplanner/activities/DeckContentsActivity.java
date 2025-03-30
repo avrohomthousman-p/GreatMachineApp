@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
+import com.greatmachine.moveplanner.utils.DataFetchingUtils;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -109,7 +109,7 @@ public class DeckContentsActivity extends AppCompatActivity {
         }
         else if (id == R.id.action_done){
             Intent intent = new Intent(this, DetainmentCountActivity.class);
-            intent.putExtra("deckContents", this.getDeckContents());
+            intent.putExtra(DetainmentCountActivity.DECK_CONTENTS_KEY, this.getDeckContents());
             startActivity(intent);
             return true;
         }
@@ -150,61 +150,10 @@ public class DeckContentsActivity extends AppCompatActivity {
         for(int i = 0; i < deckSize; i++){
             LinearLayout inner = (LinearLayout) this.outerLinearLayout.getChildAt(i);
             ImageView cardImage = (ImageView) inner.getChildAt(INDEX_OF_CARD_IMAGE);
-            CardType cardType = getCardTypeFromImageView(cardImage);
+            CardType cardType = DataFetchingUtils.getCardTypeFromImageView(cardImage);
             cardsInDeck[i] = cardType;
         }
 
         return cardsInDeck;
-    }
-
-
-    /**
-     * Given an image view that displays a card in the deck, finds and returns
-     * the card type enum associated with that card.
-     */
-    private static CardType getCardTypeFromImageView(ImageView imageView){
-        int id = imageView.getId();
-        if (id == R.id.stayAndMakeGuardCardImage){
-            return CardType.STAY_AND_MAKE_GUARD;
-        }
-        else if(id == R.id.stayStillCardImage){
-            return CardType.STAY_STILL;
-        }
-        else if(id == R.id.moveDownCardImage){
-            return CardType.MOVE_DOWN;
-        }
-        else if(id == R.id.moveLeftCardImage){
-            return CardType.MOVE_LEFT;
-        }
-        else if(id == R.id.moveUpCardImage){
-            return CardType.MOVE_UP;
-        }
-        else if(id == R.id.moveRightCardImage){
-            return CardType.MOVE_RIGHT;
-        }
-        else if(id == R.id.centralSquareCardImage){
-            return CardType.CENTRAL_SQUARE;
-        }
-        else if(id == R.id.birdCardImage){
-            return CardType.BIRD;
-        }
-        else if(id == R.id.gogglesCardImage){
-            return CardType.GOGGLES;
-        }
-        else if(id == R.id.roseCardImage){
-            return CardType.ROSE;
-        }
-        else if(id == R.id.maintenance1CardImage){
-            return CardType.MAINTENANCE_1;
-        }
-        else if(id == R.id.maintenance2CardImage){
-            return CardType.MAINTENANCE_2;
-        }
-        else if(id == R.id.maintenance3CardImage){
-            return CardType.MAINTENANCE_3;
-        }
-        else{
-            throw new IllegalArgumentException("Id is not for a card image view");
-        }
     }
 }

@@ -13,6 +13,7 @@ import com.greatmachine.moveplanner.R;
 import com.greatmachine.moveplanner.utils.CardType;
 
 public class DetainmentCountActivity extends AppCompatActivity {
+    public static final String DECK_CONTENTS_KEY = "deckContents";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +27,9 @@ public class DetainmentCountActivity extends AppCompatActivity {
         });
 
 
-        CardType[] deckContents = (CardType[]) getIntent().getSerializableExtra("deckContents");
-        //TODO: send this data to the adapter
-
-
+        CardType[] deckContents = (CardType[]) getIntent().getSerializableExtra(DECK_CONTENTS_KEY);
         ViewPager2 viewPager = findViewById(R.id.pager);
-        viewPager.setAdapter(new Adapter(this));
+        viewPager.setAdapter(new Adapter(this, deckContents));
         //viewPager.setOffscreenPageLimit(Constants.NUMBER_OF_FRAGMENTS - 1);
         //viewPager.setCurrentItem(Constants.OVERVIEW_FRAGMENT_NUMBER);
     }
