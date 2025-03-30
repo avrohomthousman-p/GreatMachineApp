@@ -14,6 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 import java.util.Locale;
 
+
+/**
+ * An activity that lets the user select which cards are in the deck.
+ */
 public class DeckContentsActivity extends AppCompatActivity {
     private LinearLayout outerLinearLayout;
     private TextView cardCount;
