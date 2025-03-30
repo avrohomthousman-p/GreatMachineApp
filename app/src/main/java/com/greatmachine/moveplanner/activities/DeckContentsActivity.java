@@ -1,4 +1,4 @@
-package com.greatmachine.moveplanner;
+package com.greatmachine.moveplanner.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.greatmachine.moveplanner.R;
+
 import java.util.Locale;
 
 

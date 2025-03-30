@@ -1,4 +1,4 @@
-package com.greatmachine.moveplanner;
+package com.greatmachine.moveplanner.activities;
 
 
 import android.graphics.drawable.Drawable;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+
+import com.greatmachine.moveplanner.R;
 
 import java.util.Locale;
 
