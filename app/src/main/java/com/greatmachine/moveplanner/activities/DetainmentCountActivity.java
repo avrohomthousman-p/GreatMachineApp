@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.greatmachine.moveplanner.R;
+import com.greatmachine.moveplanner.utils.CardType;
 
 public class DetainmentCountActivity extends AppCompatActivity {
 
@@ -23,6 +24,11 @@ public class DetainmentCountActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
+        CardType[] deckContents = (CardType[]) getIntent().getSerializableExtra("deckContents");
+        //TODO: send this data to the adapter
+
 
         ViewPager2 viewPager = findViewById(R.id.pager);
         viewPager.setAdapter(new Adapter(this));
