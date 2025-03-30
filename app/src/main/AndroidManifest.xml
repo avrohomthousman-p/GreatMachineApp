@@ -13,9 +13,12 @@
         android:theme="@style/Theme.MovePlanner"
         tools:targetApi="31">
         <activity
+            android:name=".DetainmentCountActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
-            android:theme="@style/Theme.SplashScreen"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,8 +28,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.MovePlanner">
-        </activity>
+            android:theme="@style/Theme.MovePlanner"></activity>
         <activity
             android:name=".DeckContentsActivity"
             android:exported="false" />
