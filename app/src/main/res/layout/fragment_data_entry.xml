@@ -26,17 +26,6 @@
         app:srcCompat="@drawable/movement_card" />
 
 
-    <ImageView
-        android:id="@+id/delete_btn"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/delete_icon"
-        android:contentDescription="@string/delete_btn_description"
-        app:layout_constraintTop_toTopOf="@+id/card_image"
-        app:layout_constraintBottom_toBottomOf="@+id/card_image"
-        app:layout_constraintStart_toEndOf="@+id/card_image"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
 
     <View
         android:id="@+id/barrier"
