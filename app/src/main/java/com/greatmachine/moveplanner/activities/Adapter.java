@@ -1,4 +1,4 @@
-package com.greatmachine.moveplanner;
+package com.greatmachine.moveplanner.activities;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;

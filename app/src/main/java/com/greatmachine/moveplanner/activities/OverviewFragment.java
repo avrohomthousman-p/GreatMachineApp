@@ -1,4 +1,4 @@
-package com.greatmachine.moveplanner;
+package com.greatmachine.moveplanner.activities;
 
 import android.os.Bundle;
 
