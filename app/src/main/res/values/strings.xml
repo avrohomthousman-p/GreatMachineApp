@@ -31,5 +31,9 @@
     <string name="hello_blank_fragment">This is the overview fragment. real data will be added soon</string>
     <string name="data_entry_instructions">For each servant, enter the number of detainment\'s that this card will trigger if it is drawn by that servant.</string>
     <string name="placeholder_card_number">Card ?/13</string>
-    <string name="default_detainments">0</string>
+    <string name="minus_button_description">minus button</string>
+    <string name="plus_button_description">plus button</string>
+    <string name="servant_1_detainment_count_text">0 detainments if\ndrawn by servant 1</string>
+    <string name="servant_2_detainment_count_text">0 detainments if\ndrawn by servant 2</string>
+    <string name="servant_3_detainment_count_text">0 detainments if\ndrawn by servant 3</string>
 </resources>
