@@ -26,7 +26,7 @@ public class Adapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         if(position == 0){
-            return OverviewFragment.newInstance("only fragment", "lets see what happens");
+            return OverviewFragment.newInstance();
         }
         else{
             return DataEntryFragment.newInstance(this.fragments[position], position, this.fragments.length - 1);
