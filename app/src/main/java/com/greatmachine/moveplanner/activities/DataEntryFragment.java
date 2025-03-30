@@ -10,9 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.greatmachine.moveplanner.R;
+import com.greatmachine.moveplanner.utils.CardType;
+import com.greatmachine.moveplanner.utils.DataFetchingUtils;
 
 import java.util.Locale;
 
@@ -26,11 +29,36 @@ import java.util.Locale;
  */
 public class DataEntryFragment extends Fragment {
     // Keys used for arguments passed to fragments
-    private static final String FRAGMENT_NUMBER = "fragmentNumber";
+    private static final String CARD_TYPE_KEY = "cardType";
+    private static  final String FRAGMENT_POSITION_KEY = "fragmentPosition";
+    private static final String DECK_SIZE_KEY = "deckSize";
 
 
-    private int fragmentNumber;
+    private CardType cardType;
+    private int cardNumber;
+    private int deckSize;
     private ConstraintLayout layout;
+
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param cardType the card this fragment should display
+     * @param fragmentPosition what number fragment this is,
+     *             needed to display what number in the deck
+     *             is being displayed.
+     * @param deckSize the total number of cards in the deck
+     */
+    public static DataEntryFragment newInstance(CardType cardType, int fragmentPosition, int deckSize) {
+        DataEntryFragment fragment = new DataEntryFragment();
+        Bundle args = new Bundle();
+        args.putInt(CARD_TYPE_KEY, cardType.ordinal());
+        args.putInt(FRAGMENT_POSITION_KEY, fragmentPosition);
+        args.putInt(DECK_SIZE_KEY, deckSize);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
 
     public DataEntryFragment() {
@@ -38,27 +66,14 @@ public class DataEntryFragment extends Fragment {
     }
 
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param fragmentNumber
-     * @return A new instance of fragment DataEntryFragment.
-     */
-    public static DataEntryFragment newInstance(int fragmentNumber) {
-        DataEntryFragment fragment = new DataEntryFragment();
-        Bundle args = new Bundle();
-        args.putInt(FRAGMENT_NUMBER, fragmentNumber);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            this.fragmentNumber = getArguments().getInt(FRAGMENT_NUMBER);
+            int cardTypeOrdinal = getArguments().getInt(CARD_TYPE_KEY);
+            this.cardType = CardType.values()[cardTypeOrdinal];
+            this.cardNumber = getArguments().getInt(FRAGMENT_POSITION_KEY);
+            this.deckSize = getArguments().getInt(DECK_SIZE_KEY);
         }
     }
 
@@ -70,8 +85,8 @@ public class DataEntryFragment extends Fragment {
         this.layout = (ConstraintLayout) inflater.inflate(R.layout.fragment_data_entry, container, false);
 
         //Replace the placeholder data in the layout
-        //setCardNumber();
-        //setCardImage();
+        setCardNumberDisplay();
+        setCardImage();
 
         return this.layout;
     }
@@ -81,14 +96,13 @@ public class DataEntryFragment extends Fragment {
      * The layout has default values for the card number. These defaults
      * need to be replaced at runtime with the actual data.
      */
-    private void setCardNumber(){
+    private void setCardNumberDisplay(){
         TextView cardNumberDisplay = layout.findViewById(R.id.card_number);
         String text = String.format(
                 Locale.US,
                 "Card %d/%d",
-                0,
-                0);
-        //TODO: add correct numbers here
+                this.cardNumber,
+                this.deckSize);
 
         cardNumberDisplay.setText(text);
     }
@@ -99,7 +113,8 @@ public class DataEntryFragment extends Fragment {
      * to be replaced with an actual card image on creation.
      */
     private void setCardImage(){
-        Drawable cardPic = null; //TODO: get card image
+        int resource_id = DataFetchingUtils.getImageIDForDrawable(this.cardType);
+        Drawable cardPic = ContextCompat.getDrawable(getActivity(), resource_id);
 
         ImageView cardDisplay = layout.findViewById(R.id.card_image);
         cardDisplay.setImageDrawable(cardPic);
