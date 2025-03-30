@@ -30,7 +30,5 @@ public class DetainmentCountActivity extends AppCompatActivity {
         CardType[] deckContents = (CardType[]) getIntent().getSerializableExtra(DECK_CONTENTS_KEY);
         ViewPager2 viewPager = findViewById(R.id.pager);
         viewPager.setAdapter(new Adapter(this, deckContents));
-        //viewPager.setOffscreenPageLimit(Constants.NUMBER_OF_FRAGMENTS - 1);
-        //viewPager.setCurrentItem(Constants.OVERVIEW_FRAGMENT_NUMBER);
     }
 }

@@ -3,9 +3,11 @@ package com.greatmachine.moveplanner.activities;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,6 +34,14 @@ public class DataEntryFragment extends Fragment {
     private static final String CARD_TYPE_KEY = "cardType";
     private static  final String FRAGMENT_POSITION_KEY = "fragmentPosition";
     private static final String DECK_SIZE_KEY = "deckSize";
+
+    //Used to find the actual number of detainments in the edit text
+    //displaying the number of detainments for a servant
+    private static final int INDEX_OF_DETAINMENT_COUNT = 0;
+
+
+    private static final int MAX_DETAINMENTS = 9;
+    private static final int MIN_DETAINMENTS = 0;
 
 
     private CardType cardType;
@@ -87,6 +97,7 @@ public class DataEntryFragment extends Fragment {
         //Replace the placeholder data in the layout
         setCardNumberDisplay();
         setCardImage();
+        setupClickListeners();
 
         return this.layout;
     }
@@ -118,5 +129,84 @@ public class DataEntryFragment extends Fragment {
 
         ImageView cardDisplay = layout.findViewById(R.id.card_image);
         cardDisplay.setImageDrawable(cardPic);
+    }
+
+
+    /**
+     * Sets click listeners for the plus and minus icons used to
+     * modify the number of detainments.
+     */
+    private void setupClickListeners(){
+        int[] plusBtns = new int[]{R.id.plus_servant_1, R.id.plus_servant_2, R.id.plus_servant_3};
+        int[] minusBtns = new int[]{R.id.minus_servant_1, R.id.minus_servant_2, R.id.minus_servant_3};
+        int[] textViews = new int[]{R.id.servant_1_detainments_count, R.id.servant_2_detainments_count, R.id.servant_3_detainments_count};
+
+        ImageButton btn;
+        for(int i = 0; i < plusBtns.length; i++){
+            int textView = textViews[i];
+            btn = layout.findViewById(plusBtns[i]);
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    incrementDetainments(layout.findViewById(textView));
+                }
+            });
+        }
+
+        for(int i = 0; i < minusBtns.length; i++){
+            int textView = textViews[i];
+            btn = layout.findViewById(minusBtns[i]);
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    decrementDetainments(layout.findViewById(textView));
+                }
+            });
+        }
+    }
+
+
+    /**
+     * Increments the number of detainments displayed in the target text view.
+     */
+    private void incrementDetainments(TextView target){
+        String text = (String) target.getText();
+        char embeddedNumber = text.charAt(INDEX_OF_DETAINMENT_COUNT);
+        int detainments = Character.getNumericValue(embeddedNumber);
+
+        if (detainments >= MAX_DETAINMENTS){
+            return;
+        }
+
+        String updatedText = replaceDetainmentNumber(text, detainments + 1);
+        target.setText(updatedText);
+    }
+
+
+    /**
+     * Decrements the number of detainments displayed in the target text view.
+     */
+    private void decrementDetainments(TextView target){
+        String text = (String) target.getText();
+        char embeddedNumber = text.charAt(INDEX_OF_DETAINMENT_COUNT);
+        int detainments = Character.getNumericValue(embeddedNumber);
+
+        if (detainments <= MIN_DETAINMENTS){
+            return;
+        }
+
+        String updatedText = replaceDetainmentNumber(text, detainments - 1);
+        target.setText(updatedText);
+    }
+
+
+    /**
+     * Replace the number of detainments in the original text with the specified new value.
+     */
+    private static String replaceDetainmentNumber(String originalText, int updatedValue){
+        StringBuilder builder = new StringBuilder(originalText);
+        char updatedValueAsChar = Character.forDigit(updatedValue, 10);
+        builder.setCharAt(INDEX_OF_DETAINMENT_COUNT, updatedValueAsChar);
+        return builder.toString();
     }
 }
