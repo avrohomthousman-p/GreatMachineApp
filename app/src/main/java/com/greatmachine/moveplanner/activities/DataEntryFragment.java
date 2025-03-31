@@ -98,6 +98,7 @@ public class DataEntryFragment extends Fragment {
         setCardNumberDisplay();
         setCardImage();
         setupClickListeners();
+        removeSwipeRightIfLastFragment();
 
         return this.layout;
     }
@@ -208,5 +209,16 @@ public class DataEntryFragment extends Fragment {
         char updatedValueAsChar = Character.forDigit(updatedValue, 10);
         builder.setCharAt(INDEX_OF_DETAINMENT_COUNT, updatedValueAsChar);
         return builder.toString();
+    }
+
+
+    /**
+     * If this is the last fragment, removes the swipe right icon.
+     */
+    private void removeSwipeRightIfLastFragment(){
+        if (this.cardNumber == this.deckSize){
+            ImageView swipeRight = this.layout.findViewById(R.id.swipe_right_icon);
+            this.layout.removeView(swipeRight);
+        }
     }
 }

@@ -16,6 +16,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/swipe_left_description"
+        app:srcCompat="@drawable/ic_swipe_left"
+        app:layout_constraintTop_toTopOf="@+id/card_image"
+        app:layout_constraintBottom_toBottomOf="@+id/card_image"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
     <ImageView
         android:id="@+id/card_image"
         android:layout_width="@dimen/card_width"
@@ -24,6 +35,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card_number"
         app:srcCompat="@drawable/movement_card" />
+
+
+    <ImageView
+        android:id="@+id/swipe_right_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/swipe_right_description"
+        app:srcCompat="@drawable/ic_swipe_right"
+        app:layout_constraintTop_toTopOf="@+id/card_image"
+        app:layout_constraintBottom_toBottomOf="@+id/card_image"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
 
