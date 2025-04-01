@@ -14,10 +14,14 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.greatmachine.moveplanner.R;
+import com.greatmachine.moveplanner.utils.CardData;
 import com.greatmachine.moveplanner.utils.CardType;
+import com.greatmachine.moveplanner.utils.Constants;
 import com.greatmachine.moveplanner.utils.DataFetchingUtils;
+import com.greatmachine.moveplanner.utils.ViewModelFactory;
 
 import java.util.Locale;
 
@@ -40,14 +44,11 @@ public class DataEntryFragment extends Fragment {
     private static final int INDEX_OF_DETAINMENT_COUNT = 0;
 
 
-    private static final int MAX_DETAINMENTS = 9;
-    private static final int MIN_DETAINMENTS = 0;
-
-
     private CardType cardType;
     private int cardNumber;
     private int deckSize;
     private ConstraintLayout layout;
+    private CardDataViewModel viewModel;
 
 
     /**
@@ -94,10 +95,13 @@ public class DataEntryFragment extends Fragment {
         // Inflate the layout for this fragment
         this.layout = (ConstraintLayout) inflater.inflate(R.layout.fragment_data_entry, container, false);
 
+        ViewModelFactory factory = ((DetainmentCountActivity)getActivity()).factory;
+        this.viewModel = new ViewModelProvider(requireActivity(), factory).get(CardDataViewModel.class);
+
         //Replace the placeholder data in the layout
         setCardNumberDisplay();
         setCardImage();
-        setupClickListeners();
+        setPlusAndMinusListeners();
         removeSwipeRightIfLastFragment();
 
         return this.layout;
@@ -137,7 +141,7 @@ public class DataEntryFragment extends Fragment {
      * Sets click listeners for the plus and minus icons used to
      * modify the number of detainments.
      */
-    private void setupClickListeners(){
+    private void setPlusAndMinusListeners(){
         int[] plusBtns = new int[]{R.id.plus_servant_1, R.id.plus_servant_2, R.id.plus_servant_3};
         int[] minusBtns = new int[]{R.id.minus_servant_1, R.id.minus_servant_2, R.id.minus_servant_3};
         int[] textViews = new int[]{R.id.servant_1_detainments_count, R.id.servant_2_detainments_count, R.id.servant_3_detainments_count};
@@ -145,22 +149,24 @@ public class DataEntryFragment extends Fragment {
         ImageButton btn;
         for(int i = 0; i < plusBtns.length; i++){
             int textView = textViews[i];
+            int servantNumber = i + 1;
             btn = layout.findViewById(plusBtns[i]);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    incrementDetainments(layout.findViewById(textView));
+                    incrementDetainments(layout.findViewById(textView), servantNumber);
                 }
             });
         }
 
         for(int i = 0; i < minusBtns.length; i++){
             int textView = textViews[i];
+            int servantNumber = i + 1;
             btn = layout.findViewById(minusBtns[i]);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    decrementDetainments(layout.findViewById(textView));
+                    decrementDetainments(layout.findViewById(textView), servantNumber);
                 }
             });
         }
@@ -170,34 +176,41 @@ public class DataEntryFragment extends Fragment {
     /**
      * Increments the number of detainments displayed in the target text view.
      */
-    private void incrementDetainments(TextView target){
+    private void incrementDetainments(TextView target, int servantNumber){
         String text = (String) target.getText();
         char embeddedNumber = text.charAt(INDEX_OF_DETAINMENT_COUNT);
         int detainments = Character.getNumericValue(embeddedNumber);
 
-        if (detainments >= MAX_DETAINMENTS){
+        if (detainments >= Constants.MAX_DETAINMENTS_PER_SERVANT){
             return;
         }
 
         String updatedText = replaceDetainmentNumber(text, detainments + 1);
         target.setText(updatedText);
+        updateDataInViewModel(servantNumber, detainments + 1);
     }
 
 
     /**
      * Decrements the number of detainments displayed in the target text view.
      */
-    private void decrementDetainments(TextView target){
+    private void decrementDetainments(TextView target, int servantNumber){
         String text = (String) target.getText();
         char embeddedNumber = text.charAt(INDEX_OF_DETAINMENT_COUNT);
         int detainments = Character.getNumericValue(embeddedNumber);
 
-        if (detainments <= MIN_DETAINMENTS){
+        if (detainments <= Constants.MIN_DETAINMENTS_PER_SERVANT){
             return;
         }
 
         String updatedText = replaceDetainmentNumber(text, detainments - 1);
         target.setText(updatedText);
+        updateDataInViewModel(servantNumber, detainments - 1);
+    }
+
+
+    private void updateDataInViewModel(int servantNumber, int detainmentCount){
+        this.viewModel.setDetainmentsByServant(this.cardNumber, servantNumber, detainmentCount);
     }
 
 

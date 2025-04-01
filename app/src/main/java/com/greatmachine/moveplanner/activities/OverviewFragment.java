@@ -4,13 +4,16 @@ import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.greatmachine.moveplanner.R;
+import com.greatmachine.moveplanner.utils.ViewModelFactory;
 
 /**
  * A simple {@link Fragment} subclass used to display a summary of
@@ -57,6 +60,9 @@ public class OverviewFragment extends Fragment {
 
 
     private void setFabClickListener(){
+        ViewModelFactory factory = ((DetainmentCountActivity)getActivity()).factory;
+        CardDataViewModel viewModel = new ViewModelProvider(requireActivity(), factory).get(CardDataViewModel.class);
+
         ExtendedFloatingActionButton fab = this.layout.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +71,13 @@ public class OverviewFragment extends Fragment {
                 // gather fragment data
                 // call model to process data
                 // display results
+
+                //Temp data until model is set up:
+                StringBuilder builder = new StringBuilder("The total number of detainments is ");
+                builder.append(viewModel.getTotalDetainments());
+
+                TextView outputSection = layout.findViewById(R.id.output_section);
+                outputSection.setText(builder.toString());
             }
         });
     }
