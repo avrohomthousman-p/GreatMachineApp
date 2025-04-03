@@ -31,18 +31,41 @@ public class CardData {
      * @param servantNumber the servant number, which should be 1-3
      * @param detainments the number of detainments
      */
-    public void setDetainmentByServant(int servantNumber, int detainments){
+    public void setDetainmentsForServant(int servantNumber, int detainments){
         checkServantAndDetainmentCount(servantNumber, detainments);
 
         switch (servantNumber){
             case 1:
                 this.servant1Detainments = detainments;
+                break;
             case 2:
                 this.servant2Detainments = detainments;
+                break;
             case 3:
                 this.servant3Detainments = detainments;
+                break;
         }
     }
+
+
+    /**
+     * Gets the number of detainments for the specified servant.
+     */
+    public int getDetainmentsForServant(int servantNumber){
+        switch (servantNumber){
+            case 1:
+                return this.servant1Detainments;
+            case 2:
+                return this.servant2Detainments;
+            case 3:
+                return this.servant3Detainments;
+            default:
+                throw new IllegalArgumentException(String.format("Servants are numbered 1-3. Got %d", servantNumber));
+        }
+    }
+
+
+
 
 
     /**

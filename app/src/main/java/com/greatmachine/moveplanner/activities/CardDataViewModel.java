@@ -1,6 +1,5 @@
 package com.greatmachine.moveplanner.activities;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.greatmachine.moveplanner.utils.CardData;
@@ -25,6 +24,14 @@ public class CardDataViewModel extends ViewModel {
     }
 
 
+    public void setDataAtPosition(int position, int servent1Detainments, int servent2Detainments, int servent3Detainments){
+        CardData cardData = this.data.getValue()[position];
+        cardData.servant1Detainments = servent1Detainments;
+        cardData.servant2Detainments = servent2Detainments;
+        cardData.servant3Detainments = servent3Detainments;
+    }
+
+
     /**
      * WARNING! the return value of this function has no mathematical or statistical value.
      * This function only exists for the purpouse of testing the app. Once the model is setup
@@ -42,17 +49,14 @@ public class CardDataViewModel extends ViewModel {
     }
 
 
-    public void setDataAtPosition(int position, int servent1Detainments, int servent2Detainments, int servent3Detainments){
+    public void setDetainmentsForServant(int position, int servantNumber, int detainments){
         CardData cardData = this.data.getValue()[position];
-        cardData.servant1Detainments = servent1Detainments;
-        cardData.servant2Detainments = servent2Detainments;
-        cardData.servant3Detainments = servent3Detainments;
+        cardData.setDetainmentsForServant(servantNumber, detainments);
     }
 
 
-    public void setDetainmentsByServant(int position, int servantNumber, int detainments){
-        CardData cardData = this.data.getValue()[position];
-        cardData.setDetainmentByServant(servantNumber, detainments);
-    }
 
+    public int getDetainmentsForServant(int position, int servantNumber){
+        return this.data.getValue()[position].getDetainmentsForServant(servantNumber);
+    }
 }

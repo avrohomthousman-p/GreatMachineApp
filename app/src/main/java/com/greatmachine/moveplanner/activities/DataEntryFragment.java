@@ -101,6 +101,7 @@ public class DataEntryFragment extends Fragment {
         //Replace the placeholder data in the layout
         setCardNumberDisplay();
         setCardImage();
+        setDetainmentCount();
         setPlusAndMinusListeners();
         removeSwipeRightIfLastFragment();
 
@@ -138,35 +139,63 @@ public class DataEntryFragment extends Fragment {
 
 
     /**
+     * Load the correct detainment counts from the CardDataViewModel in case
+     * the fragment data was reset (this happens if you scroll too many
+     * fragments away).
+     */
+    private void setDetainmentCount(){
+        //FIXME: why isnt this working correctly
+        int[] detainmentCountDisplays = new int[]
+                {R.id.servant_1_detainments_count, R.id.servant_2_detainments_count, R.id.servant_3_detainments_count};
+
+
+        CardData dataForThisFragment = this.viewModel.getDataAtPosition(this.cardNumber - 1);
+
+        TextView display;
+        int detainmentCount;
+        for (int i = 0; i < detainmentCountDisplays.length; i++){
+            display = this.layout.findViewById(detainmentCountDisplays[i]);
+            detainmentCount = dataForThisFragment.getDetainmentsForServant(i+1);
+
+            String updatedText = replaceDetainmentNumber(display.getText().toString(), detainmentCount);
+            display.setText(updatedText);
+        }
+    }
+
+
+    /**
      * Sets click listeners for the plus and minus icons used to
      * modify the number of detainments.
      */
     private void setPlusAndMinusListeners(){
         int[] plusBtns = new int[]{R.id.plus_servant_1, R.id.plus_servant_2, R.id.plus_servant_3};
         int[] minusBtns = new int[]{R.id.minus_servant_1, R.id.minus_servant_2, R.id.minus_servant_3};
-        int[] textViews = new int[]{R.id.servant_1_detainments_count, R.id.servant_2_detainments_count, R.id.servant_3_detainments_count};
+        int[] textViews = new int[]
+                {R.id.servant_1_detainments_count, R.id.servant_2_detainments_count, R.id.servant_3_detainments_count};
 
         ImageButton btn;
         for(int i = 0; i < plusBtns.length; i++){
-            int textView = textViews[i];
             int servantNumber = i + 1;
+            TextView outputView = layout.findViewById(textViews[i]);
+
             btn = layout.findViewById(plusBtns[i]);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    incrementDetainments(layout.findViewById(textView), servantNumber);
+                    incrementDetainments(outputView, servantNumber);
                 }
             });
         }
 
         for(int i = 0; i < minusBtns.length; i++){
-            int textView = textViews[i];
             int servantNumber = i + 1;
+            TextView outputView = layout.findViewById(textViews[i]);
+
             btn = layout.findViewById(minusBtns[i]);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    decrementDetainments(layout.findViewById(textView), servantNumber);
+                    decrementDetainments(outputView, servantNumber);
                 }
             });
         }
@@ -210,7 +239,7 @@ public class DataEntryFragment extends Fragment {
 
 
     private void updateDataInViewModel(int servantNumber, int detainmentCount){
-        this.viewModel.setDetainmentsByServant(this.cardNumber, servantNumber, detainmentCount);
+        this.viewModel.setDetainmentsForServant(this.cardNumber - 1, servantNumber, detainmentCount);
     }
 
 
