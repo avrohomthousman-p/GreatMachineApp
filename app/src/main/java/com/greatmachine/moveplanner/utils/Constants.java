@@ -7,7 +7,6 @@ package com.greatmachine.moveplanner.utils;
 public class Constants {
     public static final int MAX_DETAINMENTS_PER_SERVANT = 3;
     public static final int MIN_DETAINMENTS_PER_SERVANT = 0;
-
-
     public static final int NUMBER_OF_SERVANTS = 3;
+    public static final int TOTAL_MAX_DETAINMENTS = 9;
 }

@@ -47,6 +47,12 @@ public class CardDataViewModel extends ViewModel {
     }
 
 
+
+    public CardData[] getAllData(){
+        return this.data.getValue().clone();
+    }
+
+
     public void setDetainmentsForServant(int position, int servantNumber, int detainments){
         CardData cardData = this.data.getValue()[position];
         cardData.setDetainmentsForServant(servantNumber, detainments);

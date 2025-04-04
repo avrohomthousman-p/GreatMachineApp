@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.greatmachine.moveplanner.R;
+import com.greatmachine.moveplanner.models.OutcomeCalculator;
+import com.greatmachine.moveplanner.utils.CardData;
 import com.greatmachine.moveplanner.utils.CardDataViewModel;
 import com.greatmachine.moveplanner.utils.ViewModelFactory;
 
@@ -68,18 +70,28 @@ public class OverviewFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO:
-                // gather fragment data
-                // call model to process data
-                // display results
-
-                //Temp data until model is set up:
-                StringBuilder builder = new StringBuilder("The total number of detainments is ");
-                builder.append(viewModel.getTotalDetainments());
+                CardData[] deck = viewModel.getAllData();
+                double[] results = OutcomeCalculator.CalculateProbibilityOfOutcome(deck);
 
                 TextView outputSection = layout.findViewById(R.id.output_section);
-                outputSection.setText(builder.toString());
+                outputSection.setText(buildNiceOutputString(results, deck.length));
             }
         });
+    }
+
+
+    /**
+     * Converts the statistical data into a string to be displayed on the screen.
+     */
+    private String buildNiceOutputString(double[] data, int deckSize){
+        StringBuilder builder = new StringBuilder("There are " + deckSize + " cards in the deck\n");
+
+        for(int i = 0; i < data.length; i++){
+            builder.append("There is a " + data[i]);
+            builder.append("% chance that there will be " + i);
+            builder.append(" detainments\n");
+        }
+
+        return builder.toString();
     }
 }
