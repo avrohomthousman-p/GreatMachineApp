@@ -1,11 +1,12 @@
-package com.greatmachine.moveplanner.activities;
+package com.greatmachine.moveplanner.utils;
 import static java.util.Arrays.copyOf;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
-import com.greatmachine.moveplanner.utils.CardType;
-import java.util.Arrays;
+
+import com.greatmachine.moveplanner.activities.DataEntryFragment;
+import com.greatmachine.moveplanner.activities.OverviewFragment;
 
 public class Adapter extends FragmentStateAdapter {
 

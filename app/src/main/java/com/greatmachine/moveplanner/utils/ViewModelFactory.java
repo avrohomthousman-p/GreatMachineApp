@@ -5,8 +5,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.greatmachine.moveplanner.activities.CardDataViewModel;
-
 /**
  * Factory for instantiating ViewModelProviders with the deck contents
  */
