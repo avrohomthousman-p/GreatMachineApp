@@ -39,7 +39,7 @@
     <string name="servant_2_detainment_count_text">0 detainments if\ndrawn by servant 2</string>
     <string name="servant_3_detainment_count_text">0 detainments if\ndrawn by servant 3</string>
     <string name="overview_instructions">swipe right to enter information about the cards in the deck. Then come back here to see the results</string>
-    <string name="output_starter_text">No data yet. Click the button below to calculate the results</string>
+    <string name="output_starter_text">Click the button below to calculate the results from the data you entered.</string>
     <string name="calculate_fab_text">calculate</string>
     <string name="swipe_right_description">swipe right</string>
     <string name="swipe_left_description">swipe left</string>

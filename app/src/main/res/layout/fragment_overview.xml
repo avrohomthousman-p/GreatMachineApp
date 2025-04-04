@@ -59,6 +59,7 @@
         android:layout_margin="10dp"
         android:text="@string/output_starter_text"
         android:textAlignment="center"
+        android:textSize="@dimen/medium_text"
         android:background="@color/light_grey"
         app:layout_constraintTop_toBottomOf="@+id/barrier"
         app:layout_constraintBottom_toTopOf="@+id/fab"
