@@ -1,20 +1,16 @@
 package com.greatmachine.moveplanner.activities;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.greatmachine.moveplanner.R;
+import com.greatmachine.moveplanner.utils.Adapter;
 import com.greatmachine.moveplanner.utils.CardType;
 import com.greatmachine.moveplanner.utils.ViewModelFactory;
 

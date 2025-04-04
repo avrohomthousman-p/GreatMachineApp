@@ -1,9 +1,7 @@
-package com.greatmachine.moveplanner.activities;
+package com.greatmachine.moveplanner.utils;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import com.greatmachine.moveplanner.utils.CardData;
-import com.greatmachine.moveplanner.utils.CardType;
 
 
 public class CardDataViewModel extends ViewModel {

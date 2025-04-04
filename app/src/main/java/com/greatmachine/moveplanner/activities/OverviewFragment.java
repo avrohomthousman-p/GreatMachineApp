@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.greatmachine.moveplanner.R;
+import com.greatmachine.moveplanner.utils.CardDataViewModel;
 import com.greatmachine.moveplanner.utils.ViewModelFactory;
 
 /**
