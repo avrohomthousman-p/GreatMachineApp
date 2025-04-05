@@ -9,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.google.android.material.snackbar.Snackbar;
+import com.greatmachine.moveplanner.utils.Constants;
 import com.greatmachine.moveplanner.utils.DataFetchingUtils;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -108,9 +111,7 @@ public class DeckContentsActivity extends AppCompatActivity {
             return true;
         }
         else if (id == R.id.action_done){
-            Intent intent = new Intent(this, DetainmentCountActivity.class);
-            intent.putExtra(DetainmentCountActivity.DECK_CONTENTS_KEY, this.getDeckContents());
-            startActivity(intent);
+            startDataEntryActivity();
             return true;
         }
         else{
@@ -155,5 +156,22 @@ public class DeckContentsActivity extends AppCompatActivity {
         }
 
         return cardsInDeck;
+    }
+
+
+    private void startDataEntryActivity(){
+        if (this.outerLinearLayout.getChildCount() < Constants.MIN_CARDS_IN_DECK){
+
+            Snackbar.make(this.outerLinearLayout,
+                    String.format(Locale.US,
+                            "There must be at least %d cards in the deck", Constants.MIN_CARDS_IN_DECK),
+                    Snackbar.LENGTH_SHORT).show();
+
+        }
+        else{
+            Intent intent = new Intent(this, DetainmentCountActivity.class);
+            intent.putExtra(DetainmentCountActivity.DECK_CONTENTS_KEY, this.getDeckContents());
+            startActivity(intent);
+        }
     }
 }
