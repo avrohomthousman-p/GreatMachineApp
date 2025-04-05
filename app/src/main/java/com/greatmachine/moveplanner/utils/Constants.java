@@ -9,4 +9,5 @@ public class Constants {
     public static final int MIN_DETAINMENTS_PER_SERVANT = 0;
     public static final int NUMBER_OF_SERVANTS = 3;
     public static final int TOTAL_MAX_DETAINMENTS = 9;
+    public static final int MIN_CARDS_IN_DECK = 3;
 }

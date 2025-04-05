@@ -105,8 +105,10 @@ public class OutcomeCalculator {
     */
     public static List<CardData[]> GetDrawPossibilities(CardData[] deck)
     {
-        if (deck.length < 4) {
-            throw new IllegalArgumentException("There cannot be fewer than 4 cards in the deck. Did you forget to shuffle?");
+        if (deck.length < Constants.MIN_CARDS_IN_DECK) {
+            throw new IllegalArgumentException(String.format(
+                    "There cannot be fewer than %d cards in the deck. Did you forget to shuffle?",
+                    Constants.MIN_CARDS_IN_DECK));
         }
 
 
