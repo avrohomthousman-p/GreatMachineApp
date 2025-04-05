@@ -18,6 +18,8 @@ import com.greatmachine.moveplanner.utils.CardData;
 import com.greatmachine.moveplanner.utils.CardDataViewModel;
 import com.greatmachine.moveplanner.utils.ViewModelFactory;
 
+import java.text.DecimalFormat;
+
 /**
  * A simple {@link Fragment} subclass used to display a summary of
  * the data entered in the data entry fragments.
@@ -85,9 +87,11 @@ public class OverviewFragment extends Fragment {
      */
     private String buildNiceOutputString(double[] data, int deckSize){
         StringBuilder builder = new StringBuilder("There are " + deckSize + " cards in the deck\n");
+        DecimalFormat formatter = new DecimalFormat("##0.00");
 
         for(int i = 0; i < data.length; i++){
-            builder.append("There is a " + data[i]);
+            builder.append("There is a ");
+            builder.append(formatter.format(data[i]));
             builder.append("% chance that there will be " + i);
             builder.append(" detainments\n");
         }
