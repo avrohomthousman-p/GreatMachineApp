@@ -68,7 +68,7 @@
         android:background="@color/light_grey"
         android:text="@string/data_entry_instructions"
         android:textAlignment="center"
-        android:theme="@style/OutputDataTheme"
+        android:textSize="@dimen/medium_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barrier" />
