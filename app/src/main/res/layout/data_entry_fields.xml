@@ -1,0 +1,113 @@
+<merge xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Data input for servant detainments -->
+
+    <!-- Servant 1 -->
+    <ImageButton
+        android:id="@+id/minus_servant_1"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="@string/minus_button_description"
+        android:src="@drawable/ic_minus"
+        app:layout_constraintTop_toTopOf="@+id/servant_1_detainments_count"
+        app:layout_constraintBottom_toBottomOf="@+id/servant_1_detainments_count"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/servant_1_detainments_count"/>
+
+    <TextView
+        android:id="@+id/servant_1_detainments_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="15dp"
+        android:text="@string/servant_1_detainment_count_text"
+        android:textSize="@dimen/medium_text"
+        app:layout_constraintTop_toBottomOf="@+id/instructions"
+        app:layout_constraintBottom_toTopOf="@+id/servant_2_detainments_count"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <ImageButton
+        android:id="@+id/plus_servant_1"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="@string/plus_button_description"
+        android:src="@drawable/ic_plus"
+        app:layout_constraintTop_toTopOf="@+id/servant_1_detainments_count"
+        app:layout_constraintBottom_toBottomOf="@+id/servant_1_detainments_count"
+        app:layout_constraintStart_toEndOf="@+id/servant_1_detainments_count"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Servant 2 -->
+    <ImageButton
+        android:id="@+id/minus_servant_2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="@string/minus_button_description"
+        android:src="@drawable/ic_minus"
+        app:layout_constraintTop_toTopOf="@+id/servant_2_detainments_count"
+        app:layout_constraintBottom_toBottomOf="@+id/servant_2_detainments_count"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/servant_2_detainments_count"/>
+
+    <TextView
+        android:id="@+id/servant_2_detainments_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="15dp"
+        android:text="@string/servant_2_detainment_count_text"
+        android:textSize="@dimen/medium_text"
+        app:layout_constraintTop_toBottomOf="@+id/servant_1_detainments_count"
+        app:layout_constraintBottom_toTopOf="@+id/servant_3_detainments_count"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <ImageButton
+        android:id="@+id/plus_servant_2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="@string/plus_button_description"
+        android:src="@drawable/ic_plus"
+        app:layout_constraintTop_toTopOf="@+id/servant_2_detainments_count"
+        app:layout_constraintBottom_toBottomOf="@+id/servant_2_detainments_count"
+        app:layout_constraintStart_toEndOf="@+id/servant_2_detainments_count"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <!-- Servant 3 -->
+    <ImageButton
+        android:id="@+id/minus_servant_3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="@string/minus_button_description"
+        android:src="@drawable/ic_minus"
+        app:layout_constraintTop_toTopOf="@+id/servant_3_detainments_count"
+        app:layout_constraintBottom_toBottomOf="@+id/servant_3_detainments_count"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/servant_3_detainments_count"/>
+
+    <TextView
+        android:id="@+id/servant_3_detainments_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="15dp"
+        android:text="@string/servant_3_detainment_count_text"
+        android:textSize="@dimen/medium_text"
+        app:layout_constraintTop_toBottomOf="@+id/servant_2_detainments_count"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <ImageButton
+        android:id="@+id/plus_servant_3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="@string/plus_button_description"
+        android:src="@drawable/ic_plus"
+        app:layout_constraintTop_toTopOf="@+id/servant_3_detainments_count"
+        app:layout_constraintBottom_toBottomOf="@+id/servant_3_detainments_count"
+        app:layout_constraintStart_toEndOf="@+id/servant_3_detainments_count"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</merge>
