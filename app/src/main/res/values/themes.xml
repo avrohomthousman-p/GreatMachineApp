@@ -11,4 +11,9 @@
     <style name="Theme.SplashScreen" parent="Base.Theme.MovePlanner">
         <item name="android:windowBackground">@drawable/game_logo</item>
     </style>
+
+
+    <style name="OutputDataTheme">
+        <item name="android:textSize">@dimen/small_text</item>
+    </style>
 </resources>

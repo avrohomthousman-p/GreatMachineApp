@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="OutputDataTheme">
+        <item name="android:textSize">@dimen/medium_text</item>
+    </style>
+</resources>
