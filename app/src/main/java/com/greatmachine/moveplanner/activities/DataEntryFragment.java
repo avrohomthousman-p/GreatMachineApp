@@ -144,7 +144,6 @@ public class DataEntryFragment extends Fragment {
      * fragments away).
      */
     private void setDetainmentCount(){
-        //FIXME: why isnt this working correctly
         int[] detainmentCountDisplays = new int[]
                 {R.id.servant_1_detainments_count, R.id.servant_2_detainments_count, R.id.servant_3_detainments_count};
 

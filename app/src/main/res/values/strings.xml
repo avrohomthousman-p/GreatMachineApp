@@ -43,4 +43,6 @@
     <string name="calculate_fab_text">calculate</string>
     <string name="swipe_right_description">swipe right</string>
     <string name="swipe_left_description">swipe left</string>
+
+    <string name="line_of_output">There is a %s%% chance that there will be %d detainments</string>
 </resources>

@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import com.greatmachine.moveplanner.utils.CardDataViewModel;
 import com.greatmachine.moveplanner.utils.ViewModelFactory;
 
 import java.text.DecimalFormat;
+import java.util.Locale;
+import java.util.logging.Logger;
 
 /**
  * A simple {@link Fragment} subclass used to display a summary of
@@ -88,12 +91,11 @@ public class OverviewFragment extends Fragment {
     private String buildNiceOutputString(double[] data, int deckSize){
         StringBuilder builder = new StringBuilder("There are " + deckSize + " cards in the deck\n");
         DecimalFormat formatter = new DecimalFormat("##0.00");
+        String lineOfOutput = getString(R.string.line_of_output);
 
         for(int i = 0; i < data.length; i++){
-            builder.append("There is a ");
-            builder.append(formatter.format(data[i]));
-            builder.append("% chance that there will be " + i);
-            builder.append(" detainments\n");
+            builder.append(String.format(lineOfOutput, formatter.format(data[i]), i));
+            builder.append("\n");
         }
 
         return builder.toString();
