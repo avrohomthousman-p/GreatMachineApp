@@ -15,7 +15,6 @@ import com.greatmachine.moveplanner.utils.CardType;
 import com.greatmachine.moveplanner.utils.ViewModelFactory;
 
 public class DetainmentCountActivity extends AppCompatActivity {
-    public static final String DECK_CONTENTS_KEY = "deckContents";
 
     public ViewModelFactory factory;
 
@@ -31,7 +30,7 @@ public class DetainmentCountActivity extends AppCompatActivity {
         });
 
 
-        CardType[] deckContents = (CardType[]) getIntent().getSerializableExtra(DECK_CONTENTS_KEY);
+        CardType[] deckContents = (CardType[]) getIntent().getSerializableExtra(DeckContentsActivity.DECK_CONTENTS_KEY);
         this.factory = new ViewModelFactory(deckContents);
         ViewPager2 viewPager = findViewById(R.id.pager);
         viewPager.setAdapter(new Adapter(this, deckContents));
