@@ -1,7 +1,10 @@
 package com.greatmachine.moveplanner.activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -14,18 +17,23 @@ import com.google.android.material.snackbar.Snackbar;
 import com.greatmachine.moveplanner.utils.Constants;
 import com.greatmachine.moveplanner.utils.DataFetchingUtils;
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.greatmachine.moveplanner.R;
 import com.greatmachine.moveplanner.utils.CardType;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.logging.Logger;
 
 
 /**
  * An activity that lets the user select which cards are in the deck.
  */
 public class DeckContentsActivity extends AppCompatActivity {
+    public static final String DECK_CONTENTS_KEY = "deckContents";
     private LinearLayout outerLinearLayout;
     private TextView cardCount;
 
@@ -39,8 +47,81 @@ public class DeckContentsActivity extends AppCompatActivity {
         outerLinearLayout = this.findViewById(R.id.outerLinearLayout);
         cardCount = this.findViewById(R.id.card_count);
 
+
+        this.restoreStateIfRotation(savedInstanceState);
         this.setupToolbar();
         this.setupHandlersForRemovingCards();
+    }
+
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        boolean cardsWereRemoved = this.outerLinearLayout.getChildCount() < Constants.SIZE_OF_FULL_DECK;
+        if (cardsWereRemoved) {
+            outState.putSerializable(DECK_CONTENTS_KEY, getDeckContents());
+        }
+    }
+
+
+    /**
+     * If the activity is being restarted due to a device rotation, this function
+     * will restore the app state from the state data saved in the method
+     * onSaveInstanceState.
+     */
+    private void restoreStateIfRotation(Bundle savedInstanceState){
+        if (savedInstanceState == null || !savedInstanceState.containsKey(DECK_CONTENTS_KEY)){
+            return;
+        }
+
+        CardType[] deckContents;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            deckContents = savedInstanceState.getSerializable(DECK_CONTENTS_KEY, CardType[].class);
+        }
+        else {
+            deckContents = (CardType[]) savedInstanceState.getSerializable(DECK_CONTENTS_KEY);
+        }
+
+        //remove all cards that shouldn't be in the deck
+        ArrayList<Integer> childrenToRemove = getCardsToRemoveFromLayout(deckContents);
+        for(int i = childrenToRemove.size() - 1; i >= 0; i--){
+            this.outerLinearLayout.removeViewAt(childrenToRemove.get(i));
+        }
+
+        refreshCardCount();
+    }
+
+
+    /**
+     * Creates a list of all cards that should be removed from the layout (because
+     * they were removed from the deck before device rotation). The list is in the
+     * form of indexes of children in the layout that should be removed.
+     *
+     * @param cardsToKeep the cards that should stay in the deck, IN ORDER.
+     * @return a list of the indexes of children that should be removed from the
+     * layout.
+     */
+    private ArrayList<Integer> getCardsToRemoveFromLayout(CardType[] cardsToKeep){
+        CardType[] fullDeck = CardType.values();
+
+        ArrayList<Integer> cardsToRemove = new ArrayList<>();
+        int fullDeckPtr = 0;
+        int currentDeckPtr = 0;
+
+        while(currentDeckPtr < cardsToKeep.length){
+            if (fullDeck[fullDeckPtr] != cardsToKeep[currentDeckPtr]){
+                cardsToRemove.add(fullDeckPtr);
+                fullDeckPtr++;
+            }
+            else {
+                currentDeckPtr++;
+                fullDeckPtr++;
+            }
+        }
+
+
+        return cardsToRemove;
     }
 
 
@@ -170,7 +251,7 @@ public class DeckContentsActivity extends AppCompatActivity {
         }
         else{
             Intent intent = new Intent(this, DetainmentCountActivity.class);
-            intent.putExtra(DetainmentCountActivity.DECK_CONTENTS_KEY, this.getDeckContents());
+            intent.putExtra(DECK_CONTENTS_KEY, this.getDeckContents());
             startActivity(intent);
         }
     }
