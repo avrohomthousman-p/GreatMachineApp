@@ -30,9 +30,15 @@ for an improved gameplay experience.
 
 ## Screenshots
 
-![Screenshot_20250423-151041_Move Planner](https://github.com/user-attachments/assets/633ce67e-66c5-4c92-a1a1-bb6177e1aaa6)
-![Screenshot_20250423-151027_Move Planner](https://github.com/user-attachments/assets/b18ef053-c7de-47e4-b042-ffd1ae651548)
-![Screenshot_20250423-151050_Move Planner](https://github.com/user-attachments/assets/56b85b55-7508-4402-8c4c-8ec00943810a)
-![Screenshot_20250423-151107_Move Planner](https://github.com/user-attachments/assets/467c1ea3-b15d-494e-9540-d9353e21b2f5)
+<img src="https://github.com/user-attachments/assets/633ce67e-66c5-4c92-a1a1-bb6177e1aaa6" width="400" style="margin: 50px;">
+<hr />
+
+<img src="https://github.com/user-attachments/assets/b18ef053-c7de-47e4-b042-ffd1ae651548" width="400" style="margin: 50px;">
+<hr />
+
+<img src="https://github.com/user-attachments/assets/56b85b55-7508-4402-8c4c-8ec00943810a" width="400" style="margin: 50px;">
+<hr />
+
+<img src="https://github.com/user-attachments/assets/467c1ea3-b15d-494e-9540-d9353e21b2f5" width="400" style="margin: 50px;">
 
 
